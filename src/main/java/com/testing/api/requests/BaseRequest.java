@@ -1,5 +1,6 @@
 package com.testing.api.requests;
 
+import com.testing.api.models.Resource;
 import com.testing.api.utils.Constants;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
