@@ -11,8 +11,6 @@ import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,11 +29,10 @@ public class ResourceSteps {
         logger.info("response is:"+response.jsonPath().prettify());
         Assert.assertEquals(200, response.statusCode());
         List<Resource> resources = resourceRequest.getResourcesEntity(response);
-        /*if(resources.isEmpty()) {
-            response = resourceRequest.createDefaultResource();
-            logger.info(response.statusCode());
-            Assert.assertEquals(201, response.statusCode());
-        }*/
+        if(!resources.isEmpty()) {
+            Assert.assertTrue(resources.size() > 4);
+            logger.info("There are resources in the system");
+        }
     }
 
     @When("I send a GET request to view all the resources")
@@ -83,7 +80,7 @@ public class ResourceSteps {
     @And("the response resource should have the following details:")
     public void theResponseResourceShouldHaveTheFollowingDetails(DataTable resourceDataTable) {
         logger.info("the response resource should have the following details");
-        Map<String, String> resourceDataMap = resourceDataTable.asMaps().get(0);
+        resourceDataMap = resourceDataTable.asMaps().get(0);
         Resource expectedResource = Resource.builder()
                 .name(resourceDataMap.get("name"))
                 .trademark(resourceDataMap.get("trademark"))
@@ -91,18 +88,19 @@ public class ResourceSteps {
                 .price(Double.valueOf(resourceDataMap.get("price")))
                 .description(resourceDataMap.get("description"))
                 .tags(resourceDataMap.get("tags"))
-                .is_active(Boolean.valueOf(resourceDataMap.get("is_active")))
+                .active(Boolean.valueOf(resourceDataMap.get("active")))
                 .build();
 
         Resource actualResource = resourceRequest.getResourceEntityByResponse(response);
+        logger.info("Expected Resource: "+expectedResource);
+        logger.info("Actual Resource: "+actualResource);
         Assert.assertEquals("Name does not match", expectedResource.getName(), actualResource.getName());
         Assert.assertEquals("Trademark does not match", expectedResource.getTrademark(), actualResource.getTrademark());
         Assert.assertEquals("Stock does not match", expectedResource.getStock(), actualResource.getStock());
         Assert.assertEquals("Price does not match", expectedResource.getPrice(), actualResource.getPrice());
         Assert.assertEquals("Description does not match", expectedResource.getDescription(), actualResource.getDescription());
         Assert.assertEquals("Tags does not match", expectedResource.getTags(), actualResource.getTags());
-        Assert.assertEquals("Is_active does not match", expectedResource.getIs_active(), actualResource.getIs_active());
-
+        Assert.assertEquals("active does not match", expectedResource.getActive(), actualResource.getActive());
         logger.info("Resource details assertion success");
     }
 }

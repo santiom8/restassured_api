@@ -9,8 +9,8 @@ Feature: Client testing CRUD
 
   Scenario: Create a new client
     Given I have a client with the following details:
-      | Name   | LastName | Country  | City      | Email            | Phone      |
-      | Lokito | suarez   | Colombia | Catatumbo | sanLoc@email.com | 0987654321 |
+      | Name     | LastName | Country  | City      | Email            | Phone      |
+      | Santiago | Suarez   | Colombia | Catatumbo | sanLoc@email.com | 0987654321 |
     When I send a POST request to create a client
     Then the response should have a status code of 201
     And the response should include the details of the created client

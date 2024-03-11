@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+// Resource class, pojo
 @Builder
 @Data
 @NoArgsConstructor
@@ -16,6 +18,6 @@ public class Resource {
     private Double price;
     private String description;
     private String tags;
-    private Boolean is_active;
+    private Boolean active;
     private String id;
 }

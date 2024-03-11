@@ -14,15 +14,32 @@ public class ResourceRequest extends BaseRequest {
 
     private String endpoint;
 
+
+    /**
+     * this functions calls the request Get returns the response
+     * @return Response
+     */
     public Response getResources() {
         endpoint = String.format(Constants.URL, Constants.RESOURCE_PATH);
         return requestGet(endpoint, createBaseHeaders());
     }
 
+    /**
+     * creates a resource by POST request
+     * @param response not null
+     * @return List<Resource>
+     */
     public List<Resource> getResourcesEntity(@NotNull Response response) {
         JsonPath jsonPath = response.jsonPath();
         return jsonPath.getList("", Resource.class);
     }
+
+    /**
+     * creates a resource by POST request
+     * @param resource
+     * @param resourceId
+     * @return response
+     */
 
     public Response updateResource(Resource resource, String resourceId) {
         endpoint = String.format(Constants.URL_WITH_PARAM, Constants.RESOURCE_PATH, resourceId);
@@ -30,6 +47,12 @@ public class ResourceRequest extends BaseRequest {
         return requestPut(endpoint, createBaseHeaders(), resource);
     }
 
+    /**
+     * validates the response with the list of resources JSON schema
+     * @param response
+     * @param schemaPath
+     * @return boolean
+     */
     public boolean validateSchema(Response response, String schemaPath) {
         try {
             response.then()
@@ -42,12 +65,21 @@ public class ResourceRequest extends BaseRequest {
         }
     }
 
-
+    /**
+     * this function returns the resource entity from the response
+     * @param resourceJson
+     * @return Resource
+     */
     public Resource getResourceEntity(String resourceJson) {
         Gson gson = new Gson();
         return gson.fromJson(resourceJson, Resource.class);
     }
 
+    /**
+     * this function returns the resource entity from the response
+     * @param response
+     * @return Resource
+     */
     public Resource getResourceEntityByResponse(Response response) {
         return response.as(Resource.class);
     }

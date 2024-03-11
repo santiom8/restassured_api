@@ -19,11 +19,11 @@ Feature: Resource testing CRUD
     "price": 1212,
     "description": "Mouses to play and work, ergonomically designed for hours of comfortable use",
     "tags": "mouse",
-    "is_active": true
+    "active": true
     }
     """
     Then the response resource should have a status code of 200
     And the response resource should have the following details:
-      | name             | trademark | stock | price | description                                                                  | tags  | is_active |
-      | Incredible mouse | nike      | 324   | 1212  | Mouses to play and work, ergonomically designed for hours of comfortable use | mouse | true      |
+      | name             | trademark | stock | price | description                                                                  | tags  | active |
+      | Incredible mouse | nike      | 324   | 1212  | Mouses to play and work, ergonomically designed for hours of comfortable use | mouse | true   |
     And validates the response with the resource JSON schema

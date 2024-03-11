@@ -1,0 +1,9 @@
+{
+  "name": "Incredible mouse",
+  "trademark": "nike",
+  "stock": 324,
+  "price": 1212,
+  "description": "Mouses to play and work, ergonomically designed for hours of comfortable use",
+  "tags": "mouse",
+  "active": true
+}

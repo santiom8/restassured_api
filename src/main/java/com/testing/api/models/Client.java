@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// Client class
 @Builder
 @Data
 @NoArgsConstructor
