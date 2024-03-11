@@ -19,7 +19,7 @@ public class ClientSteps {
     private static final Logger logger = LogManager.getLogger(ClientSteps.class);
 
     private final ClientRequest clientRequest = new ClientRequest();
-    private static Map<String, String> clientDataMap;
+    private static Map<String, String> resourceDataMap;
     private Response response;
     private Client client;
     private  Client responseClient;
@@ -39,13 +39,13 @@ public class ClientSteps {
     @Given("I have a client with the following details:")
     public void iHaveAClientWithTheFollowingDetails(DataTable clientData) {
         logger.info("I have a client with the following details:" + clientData);
-        clientDataMap = clientData.asMaps().get(0);
-        client = Client.builder().name(clientDataMap.get("Name"))
-                .lastName(clientDataMap.get("LastName"))
-                .country(clientDataMap.get("Country"))
-                .city(clientDataMap.get("City"))
-                .email(clientDataMap.get("Email"))
-                .phone(clientDataMap.get("Phone"))
+        resourceDataMap = clientData.asMaps().get(0);
+        client = Client.builder().name(resourceDataMap.get("Name"))
+                .lastName(resourceDataMap.get("LastName"))
+                .country(resourceDataMap.get("Country"))
+                .city(resourceDataMap.get("City"))
+                .email(resourceDataMap.get("Email"))
+                .phone(resourceDataMap.get("Phone"))
                 .build();
         logger.info("Client: " + client);
     }

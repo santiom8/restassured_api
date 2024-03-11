@@ -26,6 +26,7 @@ public class ResourceRequest extends BaseRequest {
 
     public Response updateResource(Resource resource, String resourceId) {
         endpoint = String.format(Constants.URL_WITH_PARAM, Constants.RESOURCE_PATH, resourceId);
+        System.out.println("endpoint: " + endpoint);
         return requestPut(endpoint, createBaseHeaders(), resource);
     }
 
@@ -45,5 +46,9 @@ public class ResourceRequest extends BaseRequest {
     public Resource getResourceEntity(String resourceJson) {
         Gson gson = new Gson();
         return gson.fromJson(resourceJson, Resource.class);
+    }
+
+    public Resource getResourceEntityByResponse(Response response) {
+        return response.as(Resource.class);
     }
 }
