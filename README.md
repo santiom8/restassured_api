@@ -16,12 +16,12 @@
 
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://yourrepositorylink.com/project.git
+   git clone [https://github.com/santiom8/restassured_api.git]
 ****
 
 2. Navigate to the project directory:
    ```bash
-   cd restassured-practice
+   cd restassured_api
 ****
 
 3. Install the Maven dependencies:
