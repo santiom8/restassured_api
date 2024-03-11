@@ -81,7 +81,7 @@ public class ClientSteps {
 
     @Then("the response should have a status code of {int}")
     public void theResponseShouldHaveAStatusCodeOf(int statusCode) {
-        logger.info("the response should have a status code of dsgsdg " + statusCode);
+        logger.info("the response should have a status code of " + statusCode);
         Assert.assertEquals(statusCode, response.statusCode());
     }
 
