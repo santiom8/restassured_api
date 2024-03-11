@@ -58,7 +58,5 @@
 <!-- RUNNING THE TESTS -->
 ## Running the Tests
 
-<p>To execute all the tests, use the following Maven command in your terminal from the root directory of the project:</p>
+To execute all the tests in `Resources/features/client_testing_crud.feature` and `Resources/features/resources_testing_crud_feature`.
 
-```bash
-mvn test
